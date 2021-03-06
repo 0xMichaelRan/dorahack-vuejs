@@ -1,10 +1,13 @@
 <template>
   <div class="navs">
     <div class='header'>
-      <div class="logo" style="display:flex;">
-        <img src="../assets/long-logo.png" alt="" style="height:90%;padding-top: 3px;padding-left: 15px;"> <font size="5" style="padding-left: 10px;
-"> Platform </font>
-      </div>
+      <a href="/" style="text-decoration:none;">
+      <!-- <div> -->
+        <div class="logo" style="display:flex;">
+          <!-- <img src="../assets/long-logo.png" alt="" style="height:90%;padding-top: 3px;padding-left: 15px;">  -->
+          <!-- <font size="5" style="padding-left: 10px; "> </font> -->
+        </div>
+      </a>
       <div class="user" @click='handleClick'>user</div>
     </div>
   </div>
@@ -199,14 +202,14 @@ export default {
   box-shadow: 0px -5px 15px -1px #888888;
   background: #fff;
   .logo{
-    width: 242px;
-    height: 56px;
+    width: 177px;
+    height: 69px;
+    padding: 10px;
     margin-left: 24px;
     text-align: center;
     line-height: 56px;
-    background-image: linear-gradient(to right, #6DB9C6, #369FBA);
     color: #fff;
-    border-radius: 28px;
+    border-radius: 18px;
   }
   .user{
     width: 36px;

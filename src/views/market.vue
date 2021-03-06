@@ -28,7 +28,12 @@
         <div class="name">{{item.name}}</div>
         <div class="authorAndPricd">
           <span class='userId'>{{item.userId}}</span>
-          <span class='price'>{{item.status}}</span>
+          <div v-show='item.status === "on_auction"'>
+            <span class='price' style="background: #00ACA9;">可竞拍</span>
+          </div>
+          <div v-show='item.status === "finished"'>
+            <span class='price'>已结束</span>
+          </div>
         </div>
       </div>
     </div>
@@ -243,9 +248,12 @@ export default {
           font-size: 14px;
         }
         .price{
-          color: #00ACA9;
-          font-size: 22px;
-          
+          font-size: 16px;
+          border-radius: 6px;
+          padding-left: 10px;
+          padding-right: 10px;
+          padding-top: 5px;
+          padding-bottom: 5px;
         }
       }
       &:hover{

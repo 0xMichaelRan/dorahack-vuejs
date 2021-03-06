@@ -5,19 +5,28 @@
         <img class='picture' :src="this.url" alt="">
       </div>
       <div class="main">
-        <p class='author'>艺术家<span class='authorName'>小摩多</span>创作</p>
+        <p class='author'>艺术家<span class='authorName'> beeple </span>创作</p>
         <p class='title'> {{artName}} </p>
         <p class='idAndHash'>ID:1000300002 ▪ Hesh:<span class='hash'>#0xd92e ... 7fa96</span></p>
         <p class='source'>由 <span class='owner'>{{ownerId}}</span>拥有</p>
-        <p class="descripe">Colorful and playful characters will help you create awesome websites and applications</p>
+        <p class="descripe">Colorful and playful characters will help you create awesome websites and applications. "我不是那种会认为世界即将终结的人，不会有那种一切都会变得一团糟，20年后我们还是被限制在地上吃着烂泥的想法。我一般是很乐观的，我认为我们的社会会继续发展下去——可怕的事情正在发生，但也有很多美好的事情正在发生。（绝不是redmi软广！）"</p>
         <p class='opera'><span class="label">标签</span><span class="link">链接</span></p>
         <p class="priceAndTime">
           <span>历史价格</span>
-          <span>全部时间</span>
         </p>
-        <div class="blank"></div>
-        <p class='highestPrice'>当前最高价 $1234.54</p>
-        <div class="Bidding">{{this.status}}</div>
+        <div class="price-chart" style="width=100%">
+          <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3361691419,17368972&fm=15&gp=0.jpg">
+        </div>
+
+        <div v-show='this.status === "on_auction"'>
+          <p class='highestPrice'>当前最高价TODO<span style="color:red;"> $12,999 </span></p>
+          <div class="Bidding">出 价</div>
+        </div>
+        <div v-show='this.status === "finished"'>
+          <p class='highestPrice'>最近成交价TODO<span style="color:green;"> $12,999 </span></p>
+          <div class="Bidding" style='background: #26152d;'>该藏品还没上架，请等待下一轮</div>
+        </div>
+
       </div>
     </div>
     <div class="list">
@@ -46,35 +55,21 @@ export default {
   data(){
     return {
       queryArtUrl:'http://localhost:9091/dorahack/artwork/id?id=',
+      queryAuctionUrl:'http://localhost:9091/dorahack/auction/id/round/latest?artId=',
       artName: "default-art-name",
       ownerId: "default-owner-id",
       listingRound: "0",
+      auctionRound: "0",
       status: "void",
+      auctionStartTime: "0",
+      auctionEndTime: "0",
       historyList:[
         {
-          name: '成琦冰',
-          price: '993.49',
+          name: 'creator_name',
+          price: '100.00',
           id: '#0xd92e ... 7fa96',
-          time: '2分钟前'
+          time: '9999分钟前'
         },
-        {
-          name: '祖富璐',
-          price: '886.8',
-          id: '#0xd92e ... 7fa96',
-          time: '52分钟前'
-        },
-        {
-          name: '闵珊志',
-          price: '993.49',
-          id: '#0xd92e ... 7fa96',
-          time: '3小时32分钟前'
-        },
-        {
-          name: '字凡',
-          price: '993.49',
-          id: '#0xd92e ... 7fa96',
-          time: '2分钟前'
-        }
       ],
       // time:{
       //   hour: 8,
@@ -92,18 +87,46 @@ export default {
   methods: {
     getList(){
       axios.get(this.queryArtUrl + this.artId).then(res => {
-          console.log('res', res)
-          if(res.data.code === '0'){
-            var data = res.data.data
-            this.artName = data.name
-            this.ownerId = data.userId
-            this.listingRound = data.listingRound
-            this.status = data.status == 'on_auction' ? '竞拍中' : '已被购买'
-          }
-        })
-        .catch(error => {
-          console.log(error)
-        })
+        console.log('res', res)
+        if(res.data.code === '0'){
+          var data = res.data.data
+          this.artName = data.name
+          this.ownerId = data.userId
+          this.listingRound = data.listingRound
+          // this.status = data.status == 'on_auction' ? '竞拍中' : '已被购买'
+          this.status = data.status;
+
+              // if this is Auction page, then get queryAuctionUrl()
+              if (this.status == 'on_auction') {
+                axios.get(this.queryAuctionUrl + this.artId).then(res => {
+                  console.log('res', res)
+                  if(res.data.code === '0'){
+                    var data = res.data.data
+                    this.auctionRound = data[0].auctionRound
+                    this.auctionStartTime = data[0].startTime
+                    this.auctionEndTime = data[0].auctionEndTime
+                    // for each data[], get bidUesrId, bidPrice, bidTime
+                    var ll = [];
+                    for(var i=0; i<data.length; i++){
+                      ll[i] = []
+                      ll[i].name = data[i].bidUesrId
+                      ll[i].price = data[i].bidPrice
+                      ll[i].time = data[i].bidTime
+                    }
+                    this.historyList = ll;
+                  }
+                })
+                .catch(error => {
+                  console.log(error)
+                })
+              }
+              // else if this is TransHistory page, then get TODO
+
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
     },
   },
   mounted(){
@@ -134,13 +157,13 @@ export default {
   box-sizing: border-box;
   width: 100%;
   .info{
-    height: 720px;
+    height: 790px;
     display: flex;
     text-align: left;
     .leftPic{
       box-sizing: border-box;
       width: 720px;
-      height: 720px;
+      height: 790px;
       background-color: #06101C;
       padding-top: 90px;
       .picture{
@@ -173,8 +196,8 @@ export default {
         }
       }
       .descripe{
-        margin-top: 14px;
-        margin-bottom: 29px;
+        margin-top: 10px;
+        margin-bottom: 19px;
         font-size: 16px;
         color:#313F43;
       }
@@ -182,7 +205,7 @@ export default {
         font-weight: bold;
         color: #06101C;
         font-size: 16px;
-        margin-bottom: 48px;
+        margin-bottom: 28px;
         .label{
           margin-right: 40px
         }
@@ -192,18 +215,17 @@ export default {
         font-size: 16px;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
-      .blank{
+      .price-chart{
         width: 100%;
-        height: 214px;
-        background: #E6E8EB;
+        height: 274px;
         border-radius: 16px;
         margin-bottom: 33px;
       }
       .highestPrice{
         color: #313F43;
-        font-size: 12px;
+        font-size: 21px;
         margin-bottom: 18px;
       }
       .Bidding{
@@ -214,6 +236,7 @@ export default {
         line-height: 60px;
         color: #fff;
         border-radius: 12px;
+        font-size: 21px;
       }
     }
   }
@@ -231,7 +254,7 @@ export default {
       justify-content: space-between;
       i{
         color: #F84E58;
-        font-size: 28px;
+        font-size: 22px;
         margin-right: 33px;
       }
       .state{

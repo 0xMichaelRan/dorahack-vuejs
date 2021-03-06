@@ -64,7 +64,7 @@ export default {
   height: 20px;
   // background-color: #D93569;
   margin-right: 20px;
-  background: url(../assets/images/logo.png) no-repeat;
+  background: url(../assets/long-logo.png) no-repeat;
   background-size: contain;
 }
 </style>
