@@ -9,20 +9,22 @@
   
   <div class="main">
     <div class="welcome" v-show='current === 1'>
-      <span class="pic"></span>
+      <span class="pic">
+        <img class='picture' src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.artimg.net%2F202102%2FRvoVl1fPrS5isRv745cDY2r3WQCkBGXS9fT0BTdq.jpg&refer=http%3A%2F%2Fimg1.artimg.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1617614426&t=172e045b6383689b49ae81547e92e8be" alt="" style="height: 100%">
+      </span>
       <div class="text">
         <div class="title">Artist: Beeple</div>
-        <p>Welcome to my design portfolio on Dribbble</p>
-        <p>Welcome to my design portfolio on Dribbble Welcome to my design portfolio on Dribbble</p>
-        <p>Welcome to my design portfolio on Dribbble</p>
-        <p>Welcome to my design portfolio on Dribbble Welcome to my design portfolio on Dribbble</p>
-        <p>Welcome to my design portfolio on Dribbble</p>
+        <p>Beeple is Mike Winkelmann, a graphic designer from Charleston, SC, USA who does a variety of digital artwork including short films, Creative Commons VJ loops, everydays and VR / AR work. </p>
+        <p><br> </p>
+        <p>After he began releasing a set of widely used Creative Commons VJ loops he has worked on concert visuals for Justin Bieber, One Direction, Katy Perry, Nicki Minaj, Eminem, Zedd, deadmau5 and many more. </p>
+        <p><br> </p>
+        <p>One of the originators of the current "everyday" movement in 3D graphics, he has been creating a picture everyday from start to finish and posting it online for over ten years without missing a single day.</p>
       </div>
     </div>
 
     <div class="cardList">
       <div class="works" v-for='(item,index) in cardList' :key='index'>
-        <img class='picture' :src='item.imageUrl' alt="" @click='toDetail(item.imageUrl)'>
+        <img class='picture' :src='item.imageUrl' alt="" @click='toDetail(item.imageUrl, item.id)'>
         <div class="name">{{item.name}}</div>
         <div class="authorAndPricd">
           <span class='userId'>{{item.userId}}</span>
@@ -41,7 +43,7 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      url:'http://localhost:9091/dorahack/artwork/all-new-arts',
+      url:'http://172.16.1.199:9091/dorahack/artwork/all-new-arts',
       current: 1,
       cardList: [
         {
@@ -138,8 +140,8 @@ export default {
     changeCard(idx){
       this.current = idx
     },
-    toDetail(url){
-      this.$router.push({path: '/detail',query:{imgUrl:url}})
+    toDetail(url,id){
+      this.$router.push({path: '/detail',query:{imgUrl:url,artId:id}})
     }
     
 
@@ -178,7 +180,7 @@ export default {
     padding: 52px 40px;
     margin-bottom: 40px;
     width: 100%;
-    height: 240px;  
+    height: 270px;  
     box-sizing: border-box;
     display: flex;
     box-shadow: 2px 0px 7px 6px #e6e8e8;

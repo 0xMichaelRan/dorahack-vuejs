@@ -6,9 +6,9 @@
       </div>
       <div class="main">
         <p class='author'>艺术家<span class='authorName'>小摩多</span>创作</p>
-        <p class='title'>走进人间#2/207</p>
+        <p class='title'> {{artName}} </p>
         <p class='idAndHash'>ID:1000300002 ▪ Hesh:<span class='hash'>#0xd92e ... 7fa96</span></p>
-        <p class='source'>由 <span class='owner'>leonkrypt</span>拥有</p>
+        <p class='source'>由 <span class='owner'>{{ownerId}}</span>拥有</p>
         <p class="descripe">Colorful and playful characters will help you create awesome websites and applications</p>
         <p class='opera'><span class="label">标签</span><span class="link">链接</span></p>
         <p class="priceAndTime">
@@ -17,7 +17,7 @@
         </p>
         <div class="blank"></div>
         <p class='highestPrice'>当前最高价 $1234.54</p>
-        <div class="Bidding">竞拍</div>
+        <div class="Bidding">{{this.status}}</div>
       </div>
     </div>
     <div class="list">
@@ -25,8 +25,8 @@
         <li class='title'>
           <span>竞拍记录</span>
           <span>
-            <span>倒计时：<i>{{time.hour}}: {{time.minute}}: {{time.secends}}</i></span>
-            <span class='state'>竞拍中</span>
+            <!-- <span>倒计时：<i>{{time.hour}}: {{time.minute}}: {{time.secends}}</i></span> -->
+            <span class='state'>{{this.status}}</span>
           </span>
         </li>
         <li class="strip" v-for='(item,index) in historyList' :key='index'>
@@ -41,10 +41,15 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data(){
     return {
-      url:'',
+      queryArtUrl:'http://localhost:9091/dorahack/artwork/id?id=',
+      artName: "default-art-name",
+      ownerId: "default-owner-id",
+      listingRound: "0",
+      status: "void",
       historyList:[
         {
           name: '成琦冰',
@@ -71,34 +76,53 @@ export default {
           time: '2分钟前'
         }
       ],
-      time:{
-        hour: 8,
-        minute: 43,
-        secends: 26
-      }
+      // time:{
+      //   hour: 8,
+      //   minute: 43,
+      //   secends: 26
+      // },
     }
   },
   created(){
     this.url = this.$route.query.imgUrl
-    console.log('url',this.url)
+    this.artId = this.$route.query.artId
+    console.log('url is ',this.url)
+    this.getList()
+  },
+  methods: {
+    getList(){
+      axios.get(this.queryArtUrl + this.artId).then(res => {
+          console.log('res', res)
+          if(res.data.code === '0'){
+            var data = res.data.data
+            this.artName = data.name
+            this.ownerId = data.userId
+            this.listingRound = data.listingRound
+            this.status = data.status == 'on_auction' ? '竞拍中' : '已被购买'
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
   },
   mounted(){
-    let self = this
-    let intervalId = setInterval(function(){
-      self.time.secends--
-      if(self.time.secends <= 0){
-        self.time.secends = 60
-        self.time.minute--
-        if(self.time.minute<=0){
-          self.time.minute = 59
-          self.time.hour--
-          if(self.time.hour === 0){
-            clearInterval(intervalId)
-            intervalId = null
-          }
-        }
-      }
-    },1000)
+    // let self = this
+    // let intervalId = setInterval(function(){
+    //   self.time.secends--
+    //   if(self.time.secends <= 0){
+    //     self.time.secends = 60
+    //     self.time.minute--
+    //     if(self.time.minute<=0){
+    //       self.time.minute = 59
+    //       self.time.hour--
+    //       if(self.time.hour === 0){
+    //         clearInterval(intervalId)
+    //         intervalId = null
+    //       }
+    //     }
+    //   }
+    // },1000)
   }
 
 }
