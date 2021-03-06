@@ -48,7 +48,7 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      url:'http://172.16.1.199:9091/dorahack/artwork/all-new-arts',
+      url:'http://localhost:9091/dorahack/artwork/all-new-arts',
       current: 1,
       cardList: [
         {

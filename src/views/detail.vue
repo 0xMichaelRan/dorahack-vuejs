@@ -68,7 +68,11 @@ export default {
           name: 'creator_name',
           price: '100.00',
           id: '#0xd92e ... 7fa96',
-          time: '9999分钟前'
+          time:{
+            hour: 999,
+            minute: 60,
+            secends: 60
+          },
         },
       ],
       // time:{
@@ -104,14 +108,25 @@ export default {
                     var data = res.data.data
                     this.auctionRound = data[0].auctionRound
                     this.auctionStartTime = data[0].startTime
-                    this.auctionEndTime = data[0].auctionEndTime
+                    this.auctionEndTime = data[0].endTime
+
+                    var date1=new Date();
+                    var nowTime = [
+                      "2021",
+                      date1.getMonth(),
+                      date1.getDay(),
+                      date1.getHours(),
+                      date1.getMinutes(),
+                      date1.getSeconds(),
+                    ]
+
                     // for each data[], get bidUesrId, bidPrice, bidTime
                     var ll = [];
                     for(var i=0; i<data.length; i++){
                       ll[i] = []
                       ll[i].name = data[i].bidUesrId
                       ll[i].price = data[i].bidPrice
-                      ll[i].time = data[i].bidTime
+                      ll[i].time = this.calculateTimeDiff(nowTime, data[i].bidTime)
                     }
                     this.historyList = ll;
                   }
@@ -127,6 +142,15 @@ export default {
       .catch(error => {
         console.log(error)
       })
+    },
+    calculateTimeDiff(time1, time2) {
+      var diff = 
+        // (time1[1] - time2[1]) + "/" + 
+        (time1[2] - time2[2]) + "天 " +
+        (time1[3] - time2[3]) + "小时 " +
+        (time1[4] - time2[4]) + "分钟 " +
+        (time1[5] - time2[5]) + "秒 "
+      return diff 
     },
   },
   mounted(){
