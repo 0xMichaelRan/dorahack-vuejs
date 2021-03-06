@@ -1,7 +1,10 @@
 <template>
   <div class="navs">
     <div class='header'>
-      <div class="logo">logo</div>
+      <div class="logo" style="display:flex;">
+        <img src="../assets/long-logo.png" alt="" style="height:90%;padding-top: 3px;padding-left: 15px;"> <font size="5" style="padding-left: 10px;
+"> Platform </font>
+      </div>
       <div class="user" @click='handleClick'>user</div>
     </div>
   </div>
@@ -196,7 +199,7 @@ export default {
   box-shadow: 0px -5px 15px -1px #888888;
   background: #fff;
   .logo{
-    width: 142px;
+    width: 242px;
     height: 56px;
     margin-left: 24px;
     text-align: center;

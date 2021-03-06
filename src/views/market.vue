@@ -11,7 +11,7 @@
     <div class="welcome" v-show='current === 1'>
       <span class="pic"></span>
       <div class="text">
-        <div class="title">Alexandra Zutto</div>
+        <div class="title">Artist: Beeple</div>
         <p>Welcome to my design portfolio on Dribbble</p>
         <p>Welcome to my design portfolio on Dribbble Welcome to my design portfolio on Dribbble</p>
         <p>Welcome to my design portfolio on Dribbble</p>
@@ -25,8 +25,8 @@
         <img class='picture' :src='item.imageUrl' alt="" @click='toDetail(item.imageUrl)'>
         <div class="name">{{item.name}}</div>
         <div class="authorAndPricd">
-          <span class='author'>michael</span>
-          <span class='price'>12.34</span>
+          <span class='userId'>{{item.userId}}</span>
+          <span class='price'>{{item.status}}</span>
         </div>
       </div>
     </div>
@@ -46,73 +46,73 @@ export default {
       cardList: [
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '1',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '2',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '3',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '4',
         },
          {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '5',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '6',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '7',
         },
          {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '8',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '9',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '10',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '11',
         },
         {
           name:'beeple大神作品',
-          author: 'michael',
+          userId: 'michael',
           price: '12.34',
           url: '12',
         },
