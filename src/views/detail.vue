@@ -20,7 +20,7 @@
 
         <div v-show='this.status === "on_auction"'>
           <p class='highestPrice'>当前最高价TODO<span style="color:red;"> $12,999 </span></p>
-          <div class="Bidding">出 价</div>
+          <div class="Bidding" @click='submitPostBid()'>出 价</div>
         </div>
         <div v-show='this.status === "finished"'>
           <p class='highestPrice'>最近成交价TODO<span style="color:green;"> $12,999 </span></p>
@@ -90,6 +90,19 @@ export default {
     this.getList()
   },
   methods: {
+    submitPostBid(){
+      var url = "http://localhost:9091/dorahack/auction/id/round/id/bid?artId=1367773191933771778&auctionRound=1&bidPrice=114&bidUserId=mike_jordan"
+      axios.post(url, {
+          artId: '1367773191933771778',
+          auctionRound: '1',
+          bidPrice: '112',
+          bidUserId: 'mike_jordan'
+        }).then((response) => {
+          console.log("返回的值"+response.data)
+        }).catch((response) => {
+          console.log("错误"+response)
+        })
+    },
     getList(){
       axios.get(this.queryArtUrl + this.artId).then(res => {
         console.log('res', res)

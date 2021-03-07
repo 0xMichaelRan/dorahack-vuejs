@@ -170,6 +170,72 @@ export default {
           if(res.data.code === '0'){
             this.cardList2 = [
               {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple4.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple1.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple2.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple3.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple5.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple8.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple9.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple11.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple12.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple13.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple14.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple15.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
                 url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
               },
               {

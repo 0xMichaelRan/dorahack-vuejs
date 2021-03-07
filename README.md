@@ -1,4 +1,6 @@
-# Dorahack 参赛产品：Magi Platform
+# Dorahack 参赛产品：Magi Platform（前端）
+
+For source code of the backend, visit: https://github.com/michaelran16/dorahack-spring-boot/
 
 ![](http://github.com/michaelran16/dorahack-vuejs/raw/main/src/assets/long-logo.png)
 
