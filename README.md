@@ -25,27 +25,27 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
 
 ## 新艺术品上架规则
 
-- 每周只上架数量，上新起拍价
+- 每周只上架数量 dw，上新起拍价 ps
 
-等
+算法调节 + 持币社区投票
 
 ## 拍卖规则
 
-- 每一轮拍卖时间，价格硬顶
+- 每一轮拍卖时间 itv，价格硬顶 pc
 
-等
+算法调节 + 持币社区投票
 
 ## 拍卖成功后的买家支付
 
-- 支付时限，分成
+- 支付时限 bt，分成 inc
 
-等
+Initially set as 97/1/1/1
 
-> 部分核心逻辑暂时保密，细节请联系 https://twitter.com/Magi22206010
+（部分核心逻辑暂时保密，细节请联系官方账号）https://twitter.com/Magi22206010
 
 ## 数据库设计
 
-1. 个人数据表 user_table
+一。个人数据表 user_table
 
   1. user_id （自动生成）
   2. user_full_name：全名
@@ -54,7 +54,7 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
   5. user_bio 个人描述
   6. user_email_address: 邮箱
 
-2. 藏品表 artwork_table
+二。藏品表 artwork_table
 
   1. art_id （自动生成）
   2. eth_address：区块链上的地址
@@ -66,7 +66,7 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
   8. thumbnail_url：艺术品缩略图照片（设置后不可更改）
   9. properties 藏品属性 map { key -> value }（设置后不可更改）
 
-3. 竞拍出价表 auction_table
+三。竞拍出价表 auction_table
 
   1. art_id 艺术品ID
   2. auction_round 第几轮拍卖（设置后不可更改）
@@ -80,7 +80,7 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
   10. bid_time 出价时间
   11. is_highest_bid 出价状态：被超过(false)，当前最高价(true)
 
-4. 交易历史表 trans_history
+四。交易历史表 trans_history
 
   1. art_id 艺术品ID
   2. auction_round 第几轮拍卖
@@ -91,19 +91,19 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
   7. payment_status 支付状态：pending，failed，success
 
 
-# Backlog 暂时不做的功能
+# Backlog 功能需求表
 
 1. Presentation of an art （IPFS）
-  1. Option to modify the properties?
-  2. 启用 IPFS
+  - Option to modify the properties?
+  - 启用 IPFS
 
 2. Cancel a bid
-  1. 是否考虑让用户提前充钱进来?
+  - 是否考虑让用户提前充钱进来?
 
 3. Transfer my NFT to a friend
-  1. 不通过我们平台的transfer，那我们的数据库如何记录？
-  
+  - 不通过我们平台的transfer，那我们的数据库如何记录？
+
 4. 如果多人出价=硬顶价竞拍到，藏品的归属权逻辑？
-  1. 按出价的先后顺序
-  2. 随机
-  3. 在区块链支付时抢（浪费gas fee）
+  - 按出价的先后顺序
+  - 随机
+  - 在区块链支付时抢（浪费gas fee）
