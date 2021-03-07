@@ -81,7 +81,7 @@ export default {
 		const publicAddress = coinbase.toLowerCase();
 		// setLoading(true);
     // TODO: "connect wallet -> public address"
-    alert(publicAddress);
+    alert("You are logged in with " + publicAddress);
     
 		// Look if user with current publicAddress is already present on backend
 		// fetch(
@@ -115,7 +115,7 @@ export default {
         method: 'POST',
       }).then((response) => response.json());
     },
-    
+
     async handleSignMessage(publicAddress,nonce){
       console.log('nonce',nonce)
       try {
