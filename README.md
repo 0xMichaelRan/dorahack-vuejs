@@ -2,7 +2,7 @@
 
 ![](http://github.com/michaelran16/dorahack-vuejs/raw/main/src/assets/long-logo.png)
 
-__Magi 是一个不同于 OpeaSea 的新型 Nft 拍卖平台。__
+__Magi 是一个不同于 OpeaSea, Rarible 的新型 Nft 拍卖平台。__
 
 当下的流行的Nft marketplace包括Opeaseas，Rarible和Mintbase都存在一下一些问题：
 
@@ -23,30 +23,30 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
 
 # Tokenomics
 
-新艺术品上架规则
+## 新艺术品上架规则
 
-- 每周只上架数量，上新起拍价等
+- 每周只上架数量，上新起拍价
 
-拍卖规则
+等
 
-- 每一轮拍卖时间，价格硬顶等
+## 拍卖规则
 
-拍卖成功后的买家支付
+- 每一轮拍卖时间，价格硬顶
 
-- 支付时限，分成等
+等
 
-（部分核心逻辑暂时保密，细节请联系https://twitter.com/Magi22206010）
+## 拍卖成功后的买家支付
 
-# Demo link
+- 支付时限，分成
 
-Backend API doc : http://172.16.1.199:9091/dorahack/doc.html#/default/auction/bidPriceForArtUsingPOST
+等
 
-Frontend: http://172.16.1.199:8082/#/market
+> 部分核心逻辑暂时保密，细节请联系 https://twitter.com/Magi22206010
 
 ## 数据库设计
 
-本地MySQL
 1. 个人数据表 user_table
+
   1. user_id （自动生成）
   2. user_full_name：全名
   3. matamask_address：以太坊地址
@@ -55,6 +55,7 @@ Frontend: http://172.16.1.199:8082/#/market
   6. user_email_address: 邮箱
 
 2. 藏品表 artwork_table
+
   1. art_id （自动生成）
   2. eth_address：区块链上的地址
   3. owner_id 对应 user_id
@@ -66,6 +67,7 @@ Frontend: http://172.16.1.199:8082/#/market
   9. properties 藏品属性 map { key -> value }（设置后不可更改）
 
 3. 竞拍出价表 auction_table
+
   1. art_id 艺术品ID
   2. auction_round 第几轮拍卖（设置后不可更改）
   3. bid_user_id  出价人ID
@@ -79,6 +81,7 @@ Frontend: http://172.16.1.199:8082/#/market
   11. is_highest_bid 出价状态：被超过(false)，当前最高价(true)
 
 4. 交易历史表 trans_history
+
   1. art_id 艺术品ID
   2. auction_round 第几轮拍卖
   3. seller_id 卖出者
@@ -93,10 +96,13 @@ Frontend: http://172.16.1.199:8082/#/market
 1. Presentation of an art （IPFS）
   1. Option to modify the properties?
   2. 启用 IPFS
+
 2. Cancel a bid
   1. 是否考虑让用户提前充钱进来?
+
 3. Transfer my NFT to a friend
   1. 不通过我们平台的transfer，那我们的数据库如何记录？
+  
 4. 如果多人出价=硬顶价竞拍到，藏品的归属权逻辑？
   1. 按出价的先后顺序
   2. 随机
