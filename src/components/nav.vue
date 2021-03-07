@@ -8,7 +8,7 @@
           <!-- <font size="5" style="padding-left: 10px; "> </font> -->
         </div>
       </a>
-      <div class="user" @click='handleClick'>user</div>
+      <div class="user" @click='handleClick'>Connect Wallet</div>
     </div>
   </div>
 </template>
@@ -80,28 +80,32 @@ export default {
 
 		const publicAddress = coinbase.toLowerCase();
 		// setLoading(true);
+    // TODO: "connect wallet -> public address"
+    alert(publicAddress);
     
 		// Look if user with current publicAddress is already present on backend
-		fetch(
-			`${this.url}/users?publicAddress=${publicAddress}`
-		)
-			.then((response) => response.json())
-			// If yes, retrieve it. If no, create it.
-			.then((users) =>
-				users.length ? users[0] : this.handleSignup(publicAddress)
-        //  this.handleSignup(publicAddress)
-			)
-			// Popup MetaMask confirmation modal to sign message
-			.then(this.handleSignMessage)
-			// Send signature to backend on the /auth route
-			.then(this.handleAuthenticate)
-			// Pass accessToken back to parent component (to save it in localStorage)
-			.then(this.onLoggedIn)
-			.catch((err) => {
-				window.alert(err);
-				// setLoading(false);
-			});
+		// fetch(
+		// 	`${this.url}/users?publicAddress=${publicAddress}`
+		// )
+		// 	.then((response) => response.json())
+		// 	// If yes, retrieve it. If no, create it.
+		// 	.then((users) =>
+		// 		users.length ? users[0] : this.handleSignup(publicAddress)
+    //     //  this.handleSignup(publicAddress)
+		// 	)
+		// 	// Popup MetaMask confirmation modal to sign message
+		// 	.then(this.handleSignMessage)
+		// 	// Send signature to backend on the /auth route
+		// 	.then(this.handleAuthenticate)
+		// 	// Pass accessToken back to parent component (to save it in localStorage)
+		// 	.then(this.onLoggedIn)
+		// 	.catch((err) => {
+		// 		window.alert(err);
+		// 		// setLoading(false);
+		// 	});
+
     },
+
     handleSignup(publicAddress){
       return fetch(`${this.url}/users`, {
         body: JSON.stringify({ publicAddress }),
@@ -111,6 +115,7 @@ export default {
         method: 'POST',
       }).then((response) => response.json());
     },
+    
     async handleSignMessage(publicAddress,nonce){
       console.log('nonce',nonce)
       try {

@@ -3,8 +3,15 @@
     
   <div class="tab">
     <div class="card" @click='changeCard(1)'>最新</div>
-    <div class="card" @click='changeCard(2)'>全部</div>
-    <div class="card">投票</div>
+    <div class="card" @click='changeCard(2)'>投票</div>
+    <div class="card">上传作品</div>
+    <div id="demo">
+        <vue-metamask 
+            userMessage="msg" 
+            @onComplete="onComplete"
+        >
+        </vue-metamask>
+    </div>  
   </div>
   
   <div class="main">
@@ -21,9 +28,22 @@
         <p>One of the originators of the current "everyday" movement in 3D graphics, he has been creating a picture everyday from start to finish and posting it online for over ten years without missing a single day.</p>
       </div>
     </div>
+    <div class="welcome" v-show='current === 2'>
+      <span class="pic">
+        <img class='picture' src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.artimg.net%2F202102%2FRvoVl1fPrS5isRv745cDY2r3WQCkBGXS9fT0BTdq.jpg&refer=http%3A%2F%2Fimg1.artimg.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1617614426&t=172e045b6383689b49ae81547e92e8be" alt="" style="height: 100%">
+      </span>
+      <div class="text">
+        <div class="title">待上架艺术品</div>
+        <p>Please prepare some token for voting. </p>
+        <p><br> </p>
+        <p>请使用官方BSC钱包投票。 </p>
+        <p><br> </p>
+        <p></p>
+      </div>
+    </div>
 
     <div class="cardList">
-      <div class="works" v-for='(item,index) in cardList' :key='index'>
+      <div class="works" v-for='(item,index) in cardList' :key='index' v-show='current === 1'>
         <img class='picture' :src='item.imageUrl' alt="" @click='toDetail(item.imageUrl, item.id)'>
         <div class="name">{{item.name}}</div>
         <div class="authorAndPricd">
@@ -36,6 +56,10 @@
           </div>
         </div>
       </div>
+
+      <div class="works2" v-for='(item,index) in cardList2' :key='index' v-show='current === 2'>
+        <img class='picture' :src='item.url' alt="" @click='handleSignMessage(index)'>
+      </div>
     </div>
   </div>
   
@@ -44,12 +68,16 @@
 </template>
 
 <script>
+var Web3 = require("web3")
 import axios from 'axios'
+import VueMetamask from 'vue-metamask';
+
 export default {
   data(){
     return {
       url:'http://localhost:9091/dorahack/artwork/all-new-arts',
       current: 1,
+      cardList2: [],
       cardList: [
         {
           name:'beeple大神作品',
@@ -128,12 +156,50 @@ export default {
   },
   created(){
     this.getList()
+    if (typeof web3 !== 'undefined') {
+      web3 = new Web3(web3.currentProvider);
+    } else {
+      // set the provider you want from Web3.providers
+      web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
+    }
   },
   methods: {
     getList(){
       axios.get(this.url).then(res => {
           console.log('res',res)
           if(res.data.code === '0'){
+            this.cardList2 = [
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+              },
+              {
+                url:"",
+              },
+              {
+                url:"",
+              },
+              {
+                url:"",
+              },
+              {
+                url:"",
+              },
+              {
+                url:"",
+              },
+              {
+                url:"",
+              },
+              {
+                url:"",
+              },
+              {
+                url:"",
+              },
+            ]
             this.cardList = res.data.data
 
           }
@@ -147,10 +213,121 @@ export default {
     },
     toDetail(url,id){
       this.$router.push({path: '/detail',query:{imgUrl:url,artId:id}})
-    }
-    
+    },
+    onComplete(data){
+        console.log('data:', data);
+    },
+    handleSignMessage(index){
+        console.log('sign msg:', index);
+        const msgParams = JSON.stringify({
+          domain: {
+            // Defining the chain aka Rinkeby testnet or Ethereum Main Net
+            chainId: 1,
+            // Give a user friendly name to the specific contract you are signing for.
+            name: 'Ether Mail',
+            // If name isn't enough add verifying contract to make sure you are establishing contracts with the proper entity
+            verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
+            // Just let's you know the latest version. Definitely make sure the field name is correct.
+            version: '1',
+          },
 
-  }
+          // Defining the message signing data content.
+          message: {
+            /*
+              - Anything you want. Just a JSON Blob that encodes the data you want to send
+              - No required fields
+              - This is DApp Specific
+              - Be as explicit as possible when building out the message schema.
+            */
+            contents: 'Hello, Bob!',
+            attachedMoneyInEth: 4.2,
+            from: {
+              name: 'Cow',
+              wallets: [
+                '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826',
+                '0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF',
+              ],
+            },
+            to: [
+              {
+                name: 'Bob',
+                wallets: [
+                  '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
+                  '0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57',
+                  '0xB0B0b0b0b0b0B000000000000000000000000000',
+                ],
+              },
+            ],
+          },
+          // Refers to the keys of the *types* object below.
+          primaryType: 'Mail',
+          types: {
+            // TODO: Clarify if EIP712Domain refers to the domain the contract is hosted on
+            EIP712Domain: [
+              { name: 'name', type: 'string' },
+              { name: 'version', type: 'string' },
+              { name: 'chainId', type: 'uint256' },
+              { name: 'verifyingContract', type: 'address' },
+            ],
+            // Not an EIP712Domain definition
+            Group: [
+              { name: 'name', type: 'string' },
+              { name: 'members', type: 'Person[]' },
+            ],
+            // Refer to PrimaryType
+            Mail: [
+              { name: 'from', type: 'Person' },
+              { name: 'to', type: 'Person[]' },
+              { name: 'contents', type: 'string' },
+            ],
+            // Not an EIP712Domain definition
+            Person: [
+              { name: 'name', type: 'string' },
+              { name: 'wallets', type: 'address[]' },
+            ],
+          },
+        });
+        
+        var from = web3.eth.accounts[0];
+
+        var params = [from, msgParams];
+        var method = 'eth_signTypedData_v4';
+
+        web3.currentProvider.sendAsync(
+          {
+            method,
+            params,
+            from,
+          },
+          function (err, result) {
+            if (err) return console.dir(err);
+            if (result.error) {
+              alert(result.error.message);
+            }
+            if (result.error) return console.error('ERROR', result);
+            console.log('TYPED SIGNED:' + JSON.stringify(result.result));
+
+            const recovered = sigUtil.recoverTypedSignature_v4({
+              data: JSON.parse(msgParams),
+              sig: result.result,
+            });
+
+            if (
+              ethUtil.toChecksumAddress(recovered) === ethUtil.toChecksumAddress(from)
+            ) {
+              alert('Successfully recovered signer as ' + from);
+            } else {
+              alert(
+                'Failed to verify signer when comparing ' + result + ' to ' + from
+              );
+            }
+          }
+        );
+    },
+  },
+  components: {
+      VueMetamask,
+  },
 }
 </script>
 
@@ -259,6 +436,21 @@ export default {
       &:hover{
         border-radius: 12px;
         box-shadow: 0px 2px 4px 0px #313f43;
+      }
+    }
+    .works2{
+      width: 15%;
+      height: 150px;
+      box-sizing: border-box;
+      padding: 10px;
+      background: #fff;
+      margin-bottom: 3px;
+      margin-right: 1%;
+      .picture{
+        width: 100%;
+        height: 160px;
+        border: 1px dashed #888888;
+        cursor: pointer;
       }
     }
   }

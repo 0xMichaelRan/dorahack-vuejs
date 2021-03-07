@@ -34,8 +34,9 @@
         <li class='title'>
           <span>竞拍记录</span>
           <span>
-            <!-- <span>倒计时：<i>{{time.hour}}: {{time.minute}}: {{time.secends}}</i></span> -->
-            <span class='state'>{{this.status}}</span>
+            <div v-show='this.status === "on_auction"'>
+              <span>倒计时：<i>{{time.hour}}: {{time.minute}}: {{time.secends}}</i></span>
+            </div>
           </span>
         </li>
         <li class="strip" v-for='(item,index) in historyList' :key='index'>
@@ -75,11 +76,11 @@ export default {
           },
         },
       ],
-      // time:{
-      //   hour: 8,
-      //   minute: 43,
-      //   secends: 26
-      // },
+      time:{
+        hour: 8,
+        minute: 43,
+        secends: 26
+      },
     }
   },
   created(){
@@ -120,6 +121,10 @@ export default {
                       date1.getSeconds(),
                     ]
 
+                    this.time.hour = this.auctionEndTime[2] - nowTime[2]
+                    this.time.minute = this.auctionEndTime[3] - nowTime[3]
+                    this.time.hour = this.auctionEndTime[4] - nowTime[4]
+
                     // for each data[], get bidUesrId, bidPrice, bidTime
                     var ll = [];
                     for(var i=0; i<data.length; i++){
@@ -154,22 +159,22 @@ export default {
     },
   },
   mounted(){
-    // let self = this
-    // let intervalId = setInterval(function(){
-    //   self.time.secends--
-    //   if(self.time.secends <= 0){
-    //     self.time.secends = 60
-    //     self.time.minute--
-    //     if(self.time.minute<=0){
-    //       self.time.minute = 59
-    //       self.time.hour--
-    //       if(self.time.hour === 0){
-    //         clearInterval(intervalId)
-    //         intervalId = null
-    //       }
-    //     }
-    //   }
-    // },1000)
+    let self = this
+    let intervalId = setInterval(function(){
+      self.time.secends--
+      if(self.time.secends <= 0){
+        self.time.secends = 60
+        self.time.minute--
+        if(self.time.minute<=0){
+          self.time.minute = 59
+          self.time.hour--
+          if(self.time.hour === 0){
+            clearInterval(intervalId)
+            intervalId = null
+          }
+        }
+      }
+    },1000)
   }
 
 }
