@@ -1,5 +1,7 @@
 # Dorahack 参赛产品：Magi Platform
 
+![](http://github.com/michaelran16/dorahack-vuejs/raw/main/src/assets/long-logo.png)
+
 __Magi 是一个不同于 OpeaSea 的新型 Nft 拍卖平台。__
 
 当下的流行的Nft marketplace包括Opeaseas，Rarible和Mintbase都存在一下一些问题：
