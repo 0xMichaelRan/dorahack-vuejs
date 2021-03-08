@@ -23,8 +23,6 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
 
 团队成员从2017年之前专注区块链跨境支付场景和线上交易簿系统开发。成员曾经雇主包括Facebook，Stellar，敦煌网等。
 
-![](http://github.com/michaelran16/dorahack-vuejs/raw/main/src/assets/logo.png)
-
 # Tokenomics
 
 ## 新艺术品上架规则
@@ -112,3 +110,5 @@ Initially set as 97/1/1/1
   - 按出价的先后顺序
   - 随机分配？
   - 在区块链支付时抢（浪费gas fee）
+
+![](http://github.com/michaelran16/dorahack-vuejs/raw/main/src/assets/logo.png)
