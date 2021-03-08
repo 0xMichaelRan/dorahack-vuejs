@@ -23,6 +23,8 @@ Magi通过新型的拍卖形式，解决上述问题。具体方案如下。
 
 团队成员从2017年之前专注区块链跨境支付场景和线上交易簿系统开发。成员曾经雇主包括Facebook，Stellar，敦煌网等。
 
+![](http://github.com/michaelran16/dorahack-vuejs/raw/main/src/assets/long-logo.png)
+
 # Tokenomics
 
 ## 新艺术品上架规则
@@ -47,7 +49,7 @@ Initially set as 97/1/1/1
 
 ## 数据库设计
 
-一。个人数据表 user_table
+一，个人数据表 user_table
 
   1. user_id （自动生成）
   2. user_full_name：全名
@@ -56,7 +58,7 @@ Initially set as 97/1/1/1
   5. user_bio 个人描述
   6. user_email_address: 邮箱
 
-二。藏品表 artwork_table
+二，藏品表 artwork_table
 
   1. art_id （自动生成）
   2. eth_address：区块链上的地址
@@ -68,7 +70,7 @@ Initially set as 97/1/1/1
   8. thumbnail_url：艺术品缩略图照片（设置后不可更改）
   9. properties 藏品属性 map { key -> value }（设置后不可更改）
 
-三。竞拍出价表 auction_table
+三，竞拍出价表 auction_table
 
   1. art_id 艺术品ID
   2. auction_round 第几轮拍卖（设置后不可更改）
@@ -82,7 +84,7 @@ Initially set as 97/1/1/1
   10. bid_time 出价时间
   11. is_highest_bid 出价状态：被超过(false)，当前最高价(true)
 
-四。交易历史表 trans_history
+四，交易历史表 trans_history
 
   1. art_id 艺术品ID
   2. auction_round 第几轮拍卖
@@ -92,20 +94,21 @@ Initially set as 97/1/1/1
   6. payment_deadline 支付截止时间
   7. payment_status 支付状态：pending，failed，success
 
-
 # Backlog 功能需求表
 
-1. Presentation of an art （IPFS）
+1. Presentation of an artwork（IPFS）
   - Option to modify the properties?
   - 启用 IPFS
 
 2. Cancel a bid
   - 是否考虑让用户提前充钱进来?
+  - 退款逻辑（及手续费）
 
 3. Transfer my NFT to a friend
   - 不通过我们平台的transfer，那我们的数据库如何记录？
+  - 以bsc为准还是以mysql为准
 
 4. 如果多人出价=硬顶价竞拍到，藏品的归属权逻辑？
   - 按出价的先后顺序
-  - 随机
+  - 随机分配？
   - 在区块链支付时抢（浪费gas fee）
