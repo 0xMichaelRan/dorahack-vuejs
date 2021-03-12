@@ -153,7 +153,8 @@ export default {
                   console.log(error)
                 })
               }
-              // else if this is TransHistory page, then get TODO
+              // else if this is TransHistory page, then get from transHistory table
+              // TODO
 
         }
       })

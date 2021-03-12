@@ -170,9 +170,6 @@ export default {
           if(res.data.code === '0'){
             this.cardList2 = [
               {
-                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple4.jpg",
-              },
-              {
                 url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple1.jpg",
               },
               {
@@ -182,13 +179,25 @@ export default {
                 url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple3.jpg",
               },
               {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple4.jpg",
+              },
+              {
                 url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple5.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple6.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple7.jpg",
               },
               {
                 url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple8.jpg",
               },
               {
                 url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple9.jpg",
+              },
+              {
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple10.jpg",
               },
               {
                 url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple11.jpg",
@@ -206,94 +215,19 @@ export default {
                 url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple15.jpg",
               },
               {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple16.jpg",
               },
               {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple17.jpg",
               },
               {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple18.jpg",
               },
               {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple19.jpg",
               },
               {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
-              },
-              {
-                url:"http://n.sinaimg.cn/spider202036/30/w1080h1350/20200306/5ae6-iqmtvwv0523154.jpg",
+                url:"http://sudasuta.com/wp-content/uploads/2019/06/sudasuta-Beeple20.jpg",
               },
             ]
             this.cardList = res.data.data
